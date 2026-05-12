@@ -4,14 +4,14 @@ using System.Text;
 
 namespace MangaNya
 {
-    internal class Cliente
+    public class Cliente
     {
 
-        string Nit { get; set; } = string.Empty;
-        string nombre { get; set; } = string.Empty;
-        string apellido { get; set; } = string.Empty;
-        string direccion { get; set; } = string.Empty;
-        string telefono { get; set; } = string.Empty;
+       public string nit { get; set; } = string.Empty;
+       public string nombre { get; set; } = string.Empty;
+       public string apellido { get; set; } = string.Empty;
+       public string direccion { get; set; } = string.Empty;
+       public string telefono { get; set; } = string.Empty;
 
     }
 }

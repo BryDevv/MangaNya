@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MangaNya
 {
-    internal class Factura
+    public class Factura
     {
         string numeroFactura { get; set; } = string.Empty;
         string fecha { get; set; } = string.Empty;
