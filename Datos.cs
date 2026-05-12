@@ -205,8 +205,23 @@
             }
 
             Facturas.Add(nuevaFactura);
+            GuardarFacturaHistorial(nuevaFactura);
             CarritoTemporal.Clear();
             return nuevaFactura;
+        }
+
+        private static void GuardarFacturaHistorial(Factura f)
+        {
+            string path = "facturas_historial.txt";
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                sw.WriteLine($"FECHA:{f.Fecha}|NUM:{f.Numero}|NIT:{f.ClienteNIT}|CLIENTE:{f.ClienteNombre}|TOTAL:{f.Total}");
+                foreach (var d in f.Detalles)
+                {
+                    sw.WriteLine($"  ITEM:{d.codigoProducto}|{d.nombreProducto}|{d.cantidad}|{d.precioUnitario}");
+                }
+                sw.WriteLine("--------------------------------------------------");
+            }
         }
 
         public static void QuitarDelCarrito(string codigoBuscado)

@@ -133,17 +133,23 @@ namespace MangaNya
                 return;
             }
 
-            DialogResult res = MessageBox.Show("¿Confirmar venta?", "MangaNya", MessageBoxButtons.YesNo);
-            if (res == DialogResult.Yes)
+            // 1. Abrir ventana emergente para datos del cliente
+            FormDatosCliente frmDatos = new FormDatosCliente();
+            frmDatos.ShowDialog();
+
+            if (frmDatos.Confirmado)
             {
-                // Finalizar venta y obtener factura
-                Factura f = Datos.FinalizarVenta();
+                // 2. Finalizar venta con los datos capturados
+                Factura f = Datos.FinalizarVenta(frmDatos.NombreCliente, frmDatos.NitCliente);
                 
-                // Generar texto de la factura
+                // 3. Generar el texto de la factura
                 string textoFactura = ImpresoraFactura.GenerarTextoFactura(f);
                 
-                // Mostrar "Vista Previa" o simular impresión
-                MessageBox.Show(textoFactura, "FACTURA GENERADA - MANGANYA", MessageBoxButtons.OK);
+                // 4. Mandar a imprimir directo a la impresora predeterminada
+                ImpresoraFactura.Imprimir(textoFactura);
+                
+                // 5. Mostrar confirmación visual (opcional si ya se imprimió)
+                MessageBox.Show("Venta realizada e impresa con éxito.", "MangaNya");
                 
                 // Refrescar UI
                 ActualizarCarritoVisual();

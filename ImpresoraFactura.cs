@@ -1,5 +1,8 @@
 using System;
 using System.Text;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Windows.Forms;
 
 namespace MangaNya
 {
@@ -34,6 +37,33 @@ namespace MangaNya
             sb.AppendLine("****************************************");
 
             return sb.ToString();
+        }
+
+        public static void Imprimir(string texto)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += (sender, ev) => {
+                // Usamos Courier New para asegurar que las columnas se alineen perfectamente
+                Font font = new Font("Courier New", 10);
+                float yPos = 20;
+                float leftMargin = 20;
+                
+                string[] lineas = texto.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                foreach (string linea in lineas)
+                {
+                    ev.Graphics.DrawString(linea, font, Brushes.Black, leftMargin, yPos);
+                    yPos += font.GetHeight(ev.Graphics);
+                }
+            };
+
+            try
+            {
+                pd.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al imprimir: " + ex.Message);
+            }
         }
     }
 }
