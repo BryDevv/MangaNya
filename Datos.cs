@@ -170,6 +170,15 @@
             return subtotal;
         }
 
+        public static void FinalizarVenta()
+        {
+            foreach (var detalle in CarritoTemporal)
+            {
+                DescontarStock(detalle.codigoProducto, detalle.cantidad);
+            }
+            CarritoTemporal.Clear();
+        }
+
 
 
 

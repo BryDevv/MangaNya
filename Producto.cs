@@ -9,9 +9,9 @@ namespace MangaNya
         public string codigo { get; set; } = string.Empty;
         public string nombre { get; set; } = string.Empty;
         public string marca { get; set; } = string.Empty;
-        public decimal precioCompra { get; set; };
-        public decimal precioVenta { get; set; };
-        public int cantidad { get; set; };
+        public decimal precioCompra { get; set; }
+        public decimal precioVenta { get; set; }
+        public int cantidad { get; set; }
         public string rutaImagen { get; set; }
     }
 }
