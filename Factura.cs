@@ -1,18 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MangaNya
 {
     public class Factura
     {
-        string numeroFactura { get; set; } = string.Empty;
-        string fecha { get; set; } = string.Empty;
-        string cliente { get; set; } = string.Empty;
-        string nit { get; set; } = string.Empty;
-        string producto { get; set; } = string.Empty;
-        string cantidad { get; set; } = string.Empty;
-        string precioUnitario { get; set; } = string.Empty;
-        string total { get; set; } = string.Empty;
+        public string Numero { get; set; } = string.Empty;
+        public DateTime Fecha { get; set; } = DateTime.Now;
+        public string ClienteNombre { get; set; } = "Consumidor Final";
+        public string ClienteNIT { get; set; } = "CF";
+        public List<DetalleFactura> Detalles { get; set; } = new List<DetalleFactura>();
+        public decimal Total { get; set; }
     }
 }

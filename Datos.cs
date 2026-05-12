@@ -170,13 +170,67 @@
             return subtotal;
         }
 
-        public static void FinalizarVenta()
+        private static int contadorFacturas = 1;
+
+        public static Factura FinalizarVenta(string nombreCliente = "Consumidor Final", string nitCliente = "CF")
         {
+            Factura nuevaFactura = new Factura
+            {
+                Numero = "FAC-" + contadorFacturas++.ToString("D5"),
+                Fecha = DateTime.Now,
+                ClienteNombre = nombreCliente,
+                ClienteNIT = nitCliente,
+                Total = CalcularSubtotal()
+            };
+
             foreach (var detalle in CarritoTemporal)
             {
+                // Buscamos info extra para el detalle de la factura
+                Producto p = Productos.Find(prod => prod.codigo == detalle.codigoProducto);
+                if (p != null)
+                {
+                    detalle.nombreProducto = p.nombre;
+                    detalle.precioUnitario = p.precioVenta;
+                }
+                
+                nuevaFactura.Detalles.Add(new DetalleFactura 
+                { 
+                    codigoProducto = detalle.codigoProducto,
+                    nombreProducto = detalle.nombreProducto,
+                    cantidad = detalle.cantidad,
+                    precioUnitario = detalle.precioUnitario
+                });
+
                 DescontarStock(detalle.codigoProducto, detalle.cantidad);
             }
+
+            Facturas.Add(nuevaFactura);
             CarritoTemporal.Clear();
+            return nuevaFactura;
+        }
+
+        public static void QuitarDelCarrito(string codigoBuscado)
+        {
+            CarritoTemporal.RemoveAll(d => d.codigoProducto == codigoBuscado);
+        }
+
+        public static void EliminarProducto(string codigo)
+        {
+            Productos.RemoveAll(p => p.codigo == codigo);
+            GuardarProductoTxt();
+        }
+
+        public static void ActualizarProducto(Producto pActualizado)
+        {
+            for (int i = 0; i < Productos.Count; i++)
+            {
+                if (Productos[i].codigo == pActualizado.codigo)
+                {
+                    Productos[i] = pActualizado;
+                    break;
+                }
+            }
+            GuardarProductoTxt();
         }
 
 

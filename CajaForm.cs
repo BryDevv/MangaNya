@@ -21,26 +21,6 @@ namespace MangaNya
             // 1. Cargamos los datos guardados en el disco duro
             Datos.CargarDatos();
 
-            // 2. TRUCO DE PRUEBA: Si no hay productos en el txt, agregamos dos falsos a la memoria 
-            // solo para comprobar que el diseño visual funciona correctamente.
-            if (Datos.Productos.Count == 0)
-            {
-                Datos.Productos.Add(new Producto
-                {
-                    codigo = "M001",
-                    nombre = "Manga Naruto Vol. 1",
-                    precioVenta = 75.50m,
-                    rutaImagen = "M001.jpg" // Asegúrate de tener una imagen M001.jpg en tu carpeta Imagenes
-                });
-
-                Datos.Productos.Add(new Producto
-                {
-                    codigo = "F001",
-                    nombre = "Figura Funko Pop",
-                    precioVenta = 150.00m,
-                    rutaImagen = "F001.jpg"
-                });
-            }
 
             // 3. Ahora sí, le decimos a la IA que dibuje las tarjetas
             CargarCatalogo();
