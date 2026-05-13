@@ -16,7 +16,7 @@
                 foreach (Producto p in Productos)
                 {
 
-                    string linea = $"{p.codigo}|{p.nombre}|{p.marca}|{p.precioCompra}|{p.precioVenta}|{p.cantidad}|{p.rutaImagen}";
+                    string linea = $"{p.codigo}|{p.nombre}|{p.marca}|{p.precioCompra}|{p.precioVenta}|{p.cantidad}";
 
                     escritor.WriteLine(linea);
 
@@ -57,7 +57,7 @@
                             nuevoProducto.precioVenta = decimal.Parse(datos[4]);
                             nuevoProducto.cantidad = int.Parse(datos[5]);
 
-                            nuevoProducto.rutaImagen = datos[6];
+                            
 
 
                             Productos.Add(nuevoProducto);
