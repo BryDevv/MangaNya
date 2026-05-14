@@ -11,7 +11,7 @@
         public static void GuardarProductoTxt()
         {
 
-            using (StreamWriter escritor = new StreamWriter("productos.txt"))
+            using (StreamWriter escritor = new StreamWriter("productosv1.txt"))
             {
                 foreach (Producto p in Productos)
                 {
@@ -30,12 +30,12 @@
         {
 
 
-            if (File.Exists("productos.txt"))
+            if (File.Exists("productosv1.txt"))
             {
 
                 Productos.Clear();
 
-                using (StreamReader lector = new StreamReader("productos.txt"))
+                using (StreamReader lector = new StreamReader("productosv1.txt"))
                 {
                     string linea;
 
@@ -140,8 +140,11 @@
                 if (!yaEstabaEnCarrito)
                 {
                     DetalleFactura nuevoDetalle = new DetalleFactura();
+                    nuevoDetalle.nombreProducto = productoEncontrado.nombre;
                     nuevoDetalle.codigoProducto = productoEncontrado.codigo;
+                    nuevoDetalle.precio = productoEncontrado.precioVenta;
                     nuevoDetalle.cantidad = 1;
+                    
 
                     CarritoTemporal.Add(nuevoDetalle);
                 }
@@ -173,7 +176,24 @@
 
 
 
+        public static void EliminarDelCarrito(string codigoBuscado)
+        {
+            DetalleFactura detalleAEliminar = null;
 
+            foreach (DetalleFactura detalle in CarritoTemporal)
+            {
+                if (detalle.codigoProducto == codigoBuscado)
+                {
+                    detalleAEliminar = detalle;
+                    break;
+                }
+            }
+
+            if (detalleAEliminar != null)
+            {
+                CarritoTemporal.Remove(detalleAEliminar);
+            }
+        }
 
 
 
