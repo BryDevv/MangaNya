@@ -43,28 +43,22 @@ namespace MangaNya
 
         private void button4_Click(object sender, EventArgs e)
         {
-            try
+            Producto nuevo = new Producto
             {
-                Producto nuevo = new Producto
-                {
-                    nombre = textBox1.Text,
-                    codigo = textBox2.Text,
-                    marca = textBox3.Text,
-                    precioVenta = decimal.Parse(textBox4.Text),
+                nombre = textBox1.Text,
+                codigo = textBox2.Text,
+                marca = textBox3.Text,
+                precioVenta = decimal.Parse(textBox4.Text),
                     cantidad = int.Parse(textBox5.Text),
-                    informacionExtra = textBox6.Text,
-                    precioCompra = 0 // Not in UI, defaulting to 0
+                   
+                    precioCompra = 0 
                 };
 
                 Datos.AgregarNuevoProducto(nuevo);
                 ActualizarTablaProductos();
                 LimpiarCampos();
                 MessageBox.Show("Producto agregado correctamente.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al agregar producto: " + ex.Message);
-            }
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -79,7 +73,7 @@ namespace MangaNya
                     marca = textBox3.Text,
                     precioVenta = decimal.Parse(textBox4.Text),
                     cantidad = int.Parse(textBox5.Text),
-                    informacionExtra = textBox6.Text,
+                    
                     precioCompra = 0 // Not in UI
                 };
 
@@ -120,7 +114,7 @@ namespace MangaNya
                 textBox3.Text = row.Cells["marca"].Value.ToString();
                 textBox4.Text = row.Cells["precioVenta"].Value.ToString();
                 textBox5.Text = row.Cells["cantidad"].Value.ToString();
-                textBox6.Text = row.Cells["informacionExtra"]?.Value?.ToString() ?? "";
+                
             }
         }
 
@@ -131,7 +125,7 @@ namespace MangaNya
             textBox3.Clear();
             textBox4.Clear();
             textBox5.Clear();
-            textBox6.Clear();
+           
         }
 
 
