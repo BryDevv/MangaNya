@@ -30,6 +30,11 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            button8 = new Button();
+            txtNit = new TextBox();
+            label11 = new Label();
+            txtNombre = new TextBox();
+            label10 = new Label();
             label9 = new Label();
             button3 = new Button();
             label2 = new Label();
@@ -39,7 +44,6 @@
             label1 = new Label();
             DataP = new DataGridView();
             tabPage2 = new TabPage();
-            button7 = new Button();
             button6 = new Button();
             button5 = new Button();
             DataP_admin = new DataGridView();
@@ -75,6 +79,11 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button8);
+            tabPage1.Controls.Add(txtNit);
+            tabPage1.Controls.Add(label11);
+            tabPage1.Controls.Add(txtNombre);
+            tabPage1.Controls.Add(label10);
             tabPage1.Controls.Add(label9);
             tabPage1.Controls.Add(button3);
             tabPage1.Controls.Add(label2);
@@ -91,6 +100,53 @@
             tabPage1.Text = "Productos";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(587, 618);
+            button8.Name = "button8";
+            button8.Size = new Size(94, 29);
+            button8.TabIndex = 12;
+            button8.Text = "Imprimir";
+            button8.UseVisualStyleBackColor = true;
+            button8.Visible = false;
+            button8.Click += button8_Click;
+            // 
+            // txtNit
+            // 
+            txtNit.Location = new Point(587, 564);
+            txtNit.Name = "txtNit";
+            txtNit.Size = new Size(125, 27);
+            txtNit.TabIndex = 11;
+            txtNit.Visible = false;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(586, 541);
+            label11.Name = "label11";
+            label11.Size = new Size(35, 20);
+            label11.TabIndex = 10;
+            label11.Text = "NIT:";
+            label11.Visible = false;
+            // 
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(587, 496);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(125, 27);
+            txtNombre.TabIndex = 9;
+            txtNombre.Visible = false;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(586, 473);
+            label10.Name = "label10";
+            label10.Size = new Size(67, 20);
+            label10.TabIndex = 8;
+            label10.Text = "Nombre:";
+            label10.Visible = false;
             // 
             // label9
             // 
@@ -122,21 +178,25 @@
             // 
             // Data2
             // 
+            Data2.AllowUserToAddRows = false;
+            Data2.AllowUserToDeleteRows = false;
             Data2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             Data2.Location = new Point(587, 121);
             Data2.Name = "Data2";
+            Data2.ReadOnly = true;
             Data2.RowHeadersWidth = 51;
             Data2.Size = new Size(237, 216);
             Data2.TabIndex = 4;
             // 
             // button2
             // 
-            button2.Location = new Point(587, 638);
+            button2.Location = new Point(586, 413);
             button2.Name = "button2";
             button2.Size = new Size(237, 29);
             button2.TabIndex = 3;
-            button2.Text = "Terminar Compra";
+            button2.Text = "Generar factura";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -159,16 +219,20 @@
             // 
             // DataP
             // 
+            DataP.AllowUserToAddRows = false;
+            DataP.AllowUserToDeleteRows = false;
+            DataP.AllowUserToResizeColumns = false;
+            DataP.AllowUserToResizeRows = false;
             DataP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataP.Location = new Point(38, 112);
             DataP.Name = "DataP";
+            DataP.ReadOnly = true;
             DataP.RowHeadersWidth = 51;
             DataP.Size = new Size(405, 323);
             DataP.TabIndex = 0;
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(button7);
             tabPage2.Controls.Add(button6);
             tabPage2.Controls.Add(button5);
             tabPage2.Controls.Add(DataP_admin);
@@ -187,19 +251,10 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(851, 646);
+            tabPage2.Size = new Size(907, 757);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Control";
             tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            button7.Location = new Point(660, 114);
-            button7.Name = "button7";
-            button7.Size = new Size(168, 29);
-            button7.TabIndex = 15;
-            button7.Text = "button7";
-            button7.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
@@ -207,7 +262,7 @@
             button6.Name = "button6";
             button6.Size = new Size(168, 29);
             button6.TabIndex = 14;
-            button6.Text = "button6";
+            button6.Text = "Más Vendidos";
             button6.UseVisualStyleBackColor = true;
             // 
             // button5
@@ -370,10 +425,18 @@
         private TextBox textBox5;
         private Label label7;
         private TextBox textBox4;
-        private Button button7;
         private Button button6;
         private Button button5;
         private DataGridView DataP_admin;
         private Label label9;
+        private TextBox txtNit;
+        private Label label11;
+        private TextBox txtNombre;
+        private Label label10;
+        private Button button8;
+        private Label label12;
+        private TextBox textBox6;
     }
 }
+    
+

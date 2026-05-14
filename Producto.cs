@@ -12,6 +12,7 @@ namespace MangaNya
         public decimal precioCompra { get; set; }
         public decimal precioVenta { get; set; }
         public int cantidad { get; set; }
-        
+        public string informacionExtra { get; set; } = string.Empty;
+        public int unidadesVendidas { get; set; }
     }
 }

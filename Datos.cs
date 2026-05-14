@@ -16,7 +16,7 @@
                 foreach (Producto p in Productos)
                 {
 
-                    string linea = $"{p.codigo}|{p.nombre}|{p.marca}|{p.precioCompra}|{p.precioVenta}|{p.cantidad}";
+                    string linea = $"{p.codigo}|{p.nombre}|{p.marca}|{p.precioCompra}|{p.precioVenta}|{p.cantidad}|{p.informacionExtra}|{p.unidadesVendidas}";
 
                     escritor.WriteLine(linea);
 
@@ -45,7 +45,7 @@
                         string[] datos = linea.Split('|');
 
 
-                        if (datos.Length == 7)
+                        if (datos.Length >= 6)
                         {
                             Producto nuevoProducto = new Producto();
                             nuevoProducto.codigo = datos[0];
@@ -57,7 +57,11 @@
                             nuevoProducto.precioVenta = decimal.Parse(datos[4]);
                             nuevoProducto.cantidad = int.Parse(datos[5]);
 
-                            
+                            if (datos.Length >= 8)
+                            {
+                                nuevoProducto.informacionExtra = datos[6];
+                                nuevoProducto.unidadesVendidas = int.Parse(datos[7]);
+                            }
 
 
                             Productos.Add(nuevoProducto);
@@ -75,6 +79,21 @@
         {
             Productos.Add(nuevoProducto);
             GuardarProductoTxt();
+        }
+
+        public static void ModificarProducto(string codigo, Producto productoModificado)
+        {
+            Producto p = Productos.Find(prod => prod.codigo == codigo);
+            if (p != null)
+            {
+                p.nombre = productoModificado.nombre;
+                p.marca = productoModificado.marca;
+                p.precioCompra = productoModificado.precioCompra;
+                p.precioVenta = productoModificado.precioVenta;
+                p.cantidad = productoModificado.cantidad;
+                p.informacionExtra = productoModificado.informacionExtra;
+                GuardarProductoTxt();
+            }
         }
 
 
@@ -100,6 +119,7 @@
                 if (p.codigo == codigoVendido)
                 {
                     p.cantidad -= cantidadVendida;
+                    p.unidadesVendidas += cantidadVendida;
                     break;
                 }
             }
@@ -158,12 +178,12 @@
 
             foreach (DetalleFactura detalle in CarritoTemporal)
             {
-                // Se busca el precio de venta productos con un foreach 
+              
                 foreach (Producto p in Productos)
                 {
                     if (p.codigo == detalle.codigoProducto)
                     {
-                        // Multiplicamos el precio por la cantidad que llevamos en el carrito
+                        
                         subtotal += (p.precioVenta * detalle.cantidad);
                         break;
                     }
