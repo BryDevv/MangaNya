@@ -11,5 +11,6 @@ namespace MangaNya
         public string ClienteNIT { get; set; } = "CF";
         public List<DetalleFactura> Detalles { get; set; } = new List<DetalleFactura>();
         public decimal Total { get; set; }
+        public bool Entregada { get; set; } = false;
     }
 }
